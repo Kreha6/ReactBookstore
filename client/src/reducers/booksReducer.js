@@ -1,18 +1,5 @@
 export function booksReducer(state = {
-  books: [
-    {
-      _id:1,
-      title:"first book",
-      description:"first description",
-      price:"10.00"
-    },
-    {
-      _id:2,
-      title:"2nd book",
-      description:"2nd description",
-      price:"20.00"
-    }
-  ]
+  books: []
 }, action) {
   switch (action.type) {
     case "GET_BOOKS":
