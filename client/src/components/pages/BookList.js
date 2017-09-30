@@ -4,7 +4,6 @@ import {getBooks} from '../../actions/bookActions';
 import {bindActionCreators} from 'redux';
 import {Grid, Col, Row, Button} from 'react-bootstrap';
 import BookItem from './BookItem';
-import BooksForm from './BooksForm';
 
 class BooksList extends Component {
 
@@ -22,9 +21,6 @@ class BooksList extends Component {
     return (
       <Grid>
         <Row bsClass="row booklist">
-          <Col xs={12} sm={6}>
-            <BooksForm />
-          </Col>
           {booksList}
         </Row>
       </Grid>
