@@ -34,7 +34,7 @@ app.post('/books', function(req,res){
 })
 
 app.get('/books', function(req,res){
-  books.find(function(err, books){
+  Books.find(function(err, books){
     if(err){
       throw err;
     }

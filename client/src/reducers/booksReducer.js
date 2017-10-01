@@ -6,7 +6,7 @@ export function booksReducer(state = {
       {
         return {
         ...state,
-        books: [...state.books]
+        books: [...action.payload]
       }
 
     }
