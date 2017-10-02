@@ -20,14 +20,16 @@ class BookItem extends Component {
         return item._id === book._id;
       })
       if(itemIndex == -1){
-        this.props.addToCart(newBook);
+        let newCart = [...this.props.cart, newBook];
+        this.props.addToCart(newCart);
       }
       else{
-        this.props.updateItem(book._id,1);
+        this.props.updateItem(book._id,1, this.props.cart);
       }
     }
     else{
-      this.props.addToCart(newBook);
+      let newCart = [...this.props.cart, newBook];
+      this.props.addToCart(newCart);
     }
   }
 

@@ -2,10 +2,15 @@ import React,{ Component } from 'react';
 import BookList from './pages/BookList';
 import Cart from './pages/Cart';
 import BooksForm from './pages/BooksForm';
+import About from './pages/About';
 import Menu from './Menu';
 import Footer from './Footer';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import '../scss/app.scss';
+
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {deleteCartItem,updateItem, getCart} from '../actions/cartActions';
 
 class App extends Component {
   constructor(props) {
@@ -21,6 +26,7 @@ class App extends Component {
           <Menu />
           <main>
             <Switch>
+              <Route exact path="/about" component = {About} />
               <Route exact path="/admin" component = {BooksForm} />
               <Route exact path="/cart" component = {Cart} />
               <Route exact path="/" component = {BookList} />
@@ -32,6 +38,16 @@ class App extends Component {
 
     );
   }
+
+  componentDidMount(){
+    this.props.getCart();
+  }
 }
 
-export default App;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    getCart
+  }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(App);

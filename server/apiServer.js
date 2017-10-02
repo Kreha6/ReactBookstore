@@ -2,6 +2,8 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 var app = express();
 
@@ -10,9 +12,40 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-//api
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/bookstore');
+
+//session
+mongoose.connection.on('error', console.error.bind('console', 'MongoDB - error'));
+
+app.use(session({
+  secret: 'mySecretString',
+  saveUninitialized: false,
+  resave:false,
+  cookie: {maxAge: 1000 * 60 * 60 * 24 * 2}, // 2 days in milliseconds
+  store: new MongoStore({mongooseConnection: mongoose.connection, ttl: 2 * 24 * 60 * 60})
+  //ttl: 2 days * 24 hours * 60 minutes * 60 seconds
+}))
+
+app.post('/cart', function(req,res){
+  var cart = req.body;
+  req.session.cart = cart;
+  req.session.save(function(err){
+    if(err){
+      throw err;
+    }
+    res.json(req.session.cart);
+  })
+})
+
+app.get('/cart', function(req,res){
+  if(typeof req.session.cart !== 'undefined'){
+    //there is something in session
+    res.json(req.session.cart);
+  }
+});
+
+
 
 var Books = require('./models/books.js');
 

@@ -4,7 +4,6 @@ export function getBooks() {
   return function(dispatch){
     axios.get('/api/books')
       .then(function(response){
-        console.log(response);
         dispatch({type: "GET_BOOKS", payload: response.data})
       })
       .catch(function(err){

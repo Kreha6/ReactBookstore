@@ -12,15 +12,15 @@ class Cart extends Component {
     }
   }
   handleDelete = (_id) =>{
-    this.props.deleteCartItem(_id);
+    this.props.deleteCartItem(_id, this.props.cart);
   }
 
   handleUpdate = (_id,amount,quantity) =>{
     if(amount == -1 && quantity == 1){
-      this.props.deleteCartItem(_id);
+      this.props.deleteCartItem(_id, this.props.cart);
     }
     else{
-      this.props.updateItem(_id,amount);
+      this.props.updateItem(_id,amount, this.props.cart);
     }
   }
 
@@ -100,6 +100,7 @@ class Cart extends Component {
     }
 
   }
+
 }
 
 function mapStateToProps(state) {

@@ -4,13 +4,22 @@ export function cartReducer(state = {
   totalQty:0
 }, action) {
   switch (action.type) {
+    case "GET_CART":
+    {
+      const total = totals(action.payload);
+      return {
+      ...state,
+      cart: action.payload,
+      totalAmount:total.amount,
+      totalQty:total.qty
+      }
+    }
     case "ADD_TO_CART":
       {
-        const newCart = [...state.cart, action.payload];
-        const total = totals(newCart);
+        const total = totals(action.payload);
         return {
         ...state,
-        cart: newCart,
+        cart: action.payload,
         totalAmount:total.amount,
         totalQty:total.qty
 
@@ -18,43 +27,43 @@ export function cartReducer(state = {
     }
     case "DELETE_FROM_CART":
     {
-      const currentCart = [...state.cart]
-      const indexToDelete = currentCart.findIndex(book => {
-        return book._id === action.payload;
-      })
-
-      const newCart = [
-        ...currentCart.slice(0, indexToDelete),
-        ...currentCart.slice(indexToDelete + 1)
-      ];
-      const total = totals(newCart);
+      // const currentCart = [...state.cart]
+      // const indexToDelete = currentCart.findIndex(book => {
+      //   return book._id === action.payload;
+      // })
+      //
+      // const newCart = [
+      //   ...currentCart.slice(0, indexToDelete),
+      //   ...currentCart.slice(indexToDelete + 1)
+      // ];
+      const total = totals(action.payload);
       return {
         ...state,
-        cart: newCart,
+        cart: action.payload,
         totalAmount:total.amount,
         totalQty:total.qty
       }
     }
     case "UPDATE_ITEM":
     {
-      const currentCart = [...state.cart]
-      const indexToUpdate = currentCart.findIndex(book => {
-      return book._id === action._id;
-    })
-      const newBook = {
-      ...currentCart[indexToUpdate],
-      quantity: currentCart[indexToUpdate].quantity + action.amount
-    }
-
-    const newCart = [
-      ...currentCart.slice(0, indexToUpdate),
-      newBook,
-      ...currentCart.slice(indexToUpdate + 1)
-    ];
-    const total = totals(newCart);
+    //   const currentCart = [...state.cart]
+    //   const indexToUpdate = currentCart.findIndex(book => {
+    //   return book._id === action._id;
+    // })
+    //   const newBook = {
+    //   ...currentCart[indexToUpdate],
+    //   quantity: currentCart[indexToUpdate].quantity + action.amount
+    // }
+    //
+    // const newCart = [
+    //   ...currentCart.slice(0, indexToUpdate),
+    //   newBook,
+    //   ...currentCart.slice(indexToUpdate + 1)
+    // ];
+    const total = totals(action.payload);
     return {
       ...state,
-      cart: newCart,
+      cart: action.payload,
       totalAmount:total.amount,
       totalQty:total.qty
     }

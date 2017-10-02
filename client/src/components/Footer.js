@@ -5,7 +5,7 @@ class Footer extends Component{
   render(){
     return(
       <footer className="footer text-center">
-        <p>Just a placeholder ;)</p>
+        <p>I'm gonna be beautiful footer some day!</p>
       </footer>
     )
   }
