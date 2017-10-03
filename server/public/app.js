@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b862edd0b8b8d25461f1"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c4fc34fa65aacf31d891"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -57238,7 +57238,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.getBooks = getBooks;
 exports.postBook = postBook;
 exports.deleteBook = deleteBook;
-exports.resetForm = resetForm;
 exports.updateBook = updateBook;
 
 var _axios = __webpack_require__("./node_modules/axios/index.js");
@@ -57278,10 +57277,6 @@ function deleteBook(id) {
   };
 }
 
-function resetForm() {
-  return { type: "RESET_FORM" };
-}
-
 function updateBook(book) {
   return { type: "UPDATE_BOOK", payload: book };
 }
@@ -57297,8 +57292,6 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(postBook, 'postBook', 'E:/WEB/BookStore/client/src/actions/bookActions.js');
 
   __REACT_HOT_LOADER__.register(deleteBook, 'deleteBook', 'E:/WEB/BookStore/client/src/actions/bookActions.js');
-
-  __REACT_HOT_LOADER__.register(resetForm, 'resetForm', 'E:/WEB/BookStore/client/src/actions/bookActions.js');
 
   __REACT_HOT_LOADER__.register(updateBook, 'updateBook', 'E:/WEB/BookStore/client/src/actions/bookActions.js');
 }();
@@ -57370,13 +57363,14 @@ function deleteCartItem(_id, cart) {
   var indexToDelete = currentCart.findIndex(function (book) {
     return book._id === _id;
   });
+
   var newCart = [].concat(_toConsumableArray(currentCart.slice(0, indexToDelete)), _toConsumableArray(currentCart.slice(indexToDelete + 1)));
 
   return function (dispatch) {
     _axios2.default.post("/api/cart", newCart).then(function (response) {
       dispatch({ type: "DELETE_FROM_CART", payload: response.data });
     }).catch(function (err) {
-      dispatch({ type: "DELETE_CART_REJECTED", msg: 'error while deleting item from the cart' });
+      dispatch({ type: "DELETE_CART_REJECTED", msg: 'error while deleting cart item' });
     });
   };
 }
@@ -58169,10 +58163,6 @@ var BooksForm = function (_Component) {
       return _this.__handleDelete__REACT_HOT_LOADER__.apply(_this, arguments);
     };
 
-    _this.resetForm = function () {
-      return _this.__resetForm__REACT_HOT_LOADER__.apply(_this, arguments);
-    };
-
     _this.state = {
       images: [{}],
       img: ""
@@ -58203,17 +58193,6 @@ var BooksForm = function (_Component) {
       this.setState({
         img: '/images/' + img
       });
-    }
-  }, {
-    key: '__resetForm__REACT_HOT_LOADER__',
-    value: function __resetForm__REACT_HOT_LOADER__() {
-      (0, _reactDom.findDOMNode)(this.refs.title).value = '';
-      (0, _reactDom.findDOMNode)(this.refs.description).value = '';
-      (0, _reactDom.findDOMNode)(this.refs.price).value = '';
-      this.setState({
-        img: ''
-      });
-      this.props.resetForm();
     }
   }, {
     key: 'render',
@@ -58313,11 +58292,8 @@ var BooksForm = function (_Component) {
               ),
               _react2.default.createElement(
                 _reactBootstrap.Button,
-                {
-                  onClick: !this.props.msg ? this.handleSubmit : this.resetForm,
-                  bsStyle: !this.props.style ? "primary" : this.props.style
-                },
-                !this.props.msg ? "Save book" : this.props.msg
+                { onClick: this.handleSubmit, bsStyle: 'primary' },
+                'Add book'
               )
             ),
             _react2.default.createElement(
@@ -58375,9 +58351,7 @@ var BooksForm = function (_Component) {
 
 function mapStateToProps(state) {
   return {
-    books: state.books.books,
-    msg: state.books.msg,
-    style: state.books.style
+    books: state.books.books
   };
 }
 
@@ -58385,8 +58359,7 @@ function mapDispatchToProps(dispatch) {
   return (0, _redux.bindActionCreators)({
     postBook: _bookActions.postBook,
     deleteBook: _bookActions.deleteBook,
-    getBooks: _bookActions.getBooks,
-    resetForm: _bookActions.resetForm
+    getBooks: _bookActions.getBooks
   }, dispatch);
 }
 
@@ -58788,23 +58761,7 @@ function booksReducer() {
     case "POST_BOOK":
       {
         return _extends({}, state, {
-          books: [].concat(_toConsumableArray(state.books), [action.payload]),
-          msg: "Saved: Click to continue",
-          style: "success"
-        });
-      }
-    case "POST_REJECTED":
-      {
-        return _extends({}, state, {
-          msg: "Please try again",
-          style: "danger"
-        });
-      }
-    case "RESET_FORM":
-      {
-        return _extends({}, state, {
-          msg: null,
-          style: "primary"
+          books: [].concat(_toConsumableArray(state.books), [action.payload])
         });
       }
     case "DELETE_BOOK":
