@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+//const fs = require('fs');
 
 var app = express();
 
@@ -103,7 +104,20 @@ app.put('/books/:_id',function(req,res){
   })
 })
 
-//api
+app.get('/images', function(req,res){
+  const imgFolder = __dirname + '/public/images/';
+  const fs = require('fs');
+  fs.readdir(imgFolder, function(err,files){
+    if(err){
+      return console.error(err);
+    }
+    const filesArr = [];
+    files.forEach(function(file){
+      filesArr.push({name:file});
+    });
+    res.json(filesArr);
+  })
+})
 
 app.listen(3001,function(err){
   if(err){

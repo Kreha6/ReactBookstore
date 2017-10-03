@@ -16,10 +16,10 @@ app.use('/api', function(req,res){
 })
 
 app.use(logger('dev'));
-app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('*', function(req,res){
-  res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'))
+  res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 });
 
 app.use(function(req, res, next) {
