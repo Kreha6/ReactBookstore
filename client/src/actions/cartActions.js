@@ -26,19 +26,37 @@ export function addToCart(cart){
 }
 
 export function deleteCartItem(_id, cart) {
+  // const currentCart = cart;
+  // const indexToDelete = currentCart.findIndex(book => {
+  //   return book._id === _id;
+  // })
+  //
+  // const newCart = [
+  //   ...currentCart.slice(0, indexToDelete),
+  //   ...currentCart.slice(indexToDelete + 1)
+  // ];
+  // return {
+  //   type: "DELETE_FROM_CART",
+  //   payload: newCart
+  // }
   const currentCart = cart;
   const indexToDelete = currentCart.findIndex(book => {
     return book._id === _id;
   })
-
   const newCart = [
     ...currentCart.slice(0, indexToDelete),
     ...currentCart.slice(indexToDelete + 1)
   ];
-  return {
-    type: "DELETE_FROM_CART",
-    payload: newCart
-  }
+
+return function(dispatch){
+  axios.post("/api/cart", newCart)
+    .then(function(response){
+      dispatch({type:"DELETE_FROM_CART", payload:response.data})
+    })
+    .catch(function(err){
+      dispatch({type:"DELETE_CART_REJECTED", msg: 'error while deleting item from the cart'})
+    })
+}
 }
 
 export function updateItem(_id,amount, cart) {
