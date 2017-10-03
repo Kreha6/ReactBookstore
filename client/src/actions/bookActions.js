@@ -37,6 +37,10 @@ export function deleteBook(id) {
   }
 }
 
+export function resetForm() {
+  return {type: "RESET_FORM"}
+}
+
 export function updateBook(book) {
   return {type: "UPDATE_BOOK", payload: book}
 }

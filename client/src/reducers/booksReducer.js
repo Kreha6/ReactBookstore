@@ -17,7 +17,26 @@ export function booksReducer(state = {
         books: [
           ...state.books,
           action.payload
-        ]
+        ],
+        msg:'Saved! Click to continue',
+        style:'success'
+      }
+    }
+    case "POST_REJECTED":
+      {
+        return {
+        ...state,
+        msg:'Please try again',
+        style:'danger'
+      }
+    }
+    case "RESET_FORM":
+      {
+        return {
+        ...state,
+        msg:null,
+        style:'primary'
+
       }
     }
     case "DELETE_BOOK":
