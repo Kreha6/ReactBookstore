@@ -48,7 +48,7 @@ class BookItem extends Component {
     const {book} = this.props;
     return (
       <Well>
-        <Row>
+        <Row bsClass="row book-item">
           <Col xs={12} sm={4}>
             <Image src={book.images} responsive/>
           </Col>
@@ -61,7 +61,7 @@ class BookItem extends Component {
               </button>
             </p>
             <h6>{book.price}</h6>
-            <Button onClick={this.handleAdd} bsStyle="primary">Add to cart</Button>
+            <Button bsClass="btn btn-primary book-item__button--add" onClick={this.handleAdd} bsStyle="primary">Add to cart</Button>
           </Col>
         </Row>
       </Well>

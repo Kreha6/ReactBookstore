@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "54bfef160ae4c0eaf197"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d53c25bc2a05da3335a6"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -5177,7 +5177,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".booklist {\n  margin-top: 15px; }\n\n.delete-form {\n  margin-top: 25px; }\n\n.cart__buttons {\n  min-width: 300px; }\n\n.footer {\n  margin: 20px 0; }\n\n.menu__navbar__badge {\n  background-color: #e4aa48; }\n\n.book-item__button--show {\n  background: none;\n  border: none;\n  margin: 0;\n  padding: 3;\n  outline: none;\n  outline-offset: 0;\n  color: #00BC8C; }\n  .book-item__button--show:hover {\n    color: #11CD9D; }\n\nmain {\n  margin-top: 70px; }\n", ""]);
+exports.push([module.i, ".booklist {\n  margin-top: 15px; }\n\n.delete-form {\n  margin-top: 25px; }\n\n.cart__buttons {\n  min-width: 300px; }\n\n.footer {\n  margin: 20px 0; }\n\n.menu__navbar__badge {\n  background-color: #e4aa48; }\n\n.book-item {\n  min-height: 175px;\n  position: relative; }\n  .book-item__button--show {\n    background: none;\n    border: none;\n    margin: 0;\n    padding: 3;\n    outline: none;\n    outline-offset: 0;\n    color: #00BC8C; }\n    .book-item__button--show:hover {\n      color: #11CD9D; }\n\nmain {\n  margin-top: 70px; }\n", ""]);
 
 // exports
 
@@ -57811,7 +57811,7 @@ var About = function About() {
       _react2.default.createElement(
         'li',
         null,
-        'get rid of this react-bootstrap stuff'
+        'get rid of this react-bootstrap stuff and create everything by myself'
       ),
       _react2.default.createElement(
         'li',
@@ -57940,7 +57940,7 @@ var BookItem = function (_Component) {
         null,
         _react2.default.createElement(
           _reactBootstrap.Row,
-          null,
+          { bsClass: 'row book-item' },
           _react2.default.createElement(
             _reactBootstrap.Col,
             { xs: 12, sm: 4 },
@@ -57971,7 +57971,7 @@ var BookItem = function (_Component) {
             ),
             _react2.default.createElement(
               _reactBootstrap.Button,
-              { onClick: this.handleAdd, bsStyle: 'primary' },
+              { bsClass: 'btn btn-primary book-item__button--add', onClick: this.handleAdd, bsStyle: 'primary' },
               'Add to cart'
             )
           )

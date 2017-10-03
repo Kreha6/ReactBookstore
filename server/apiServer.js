@@ -75,7 +75,7 @@ app.delete('/books/:_id',function(req,res){
 
   Books.remove(query, function(err,books){
     if(err){
-      throw err;
+      console.log('error while deleting', err);
     }
     res.json(books);
   })

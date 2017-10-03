@@ -1,4 +1,6 @@
 .book-item{
+  min-height:175px;
+  position: relative;
   &__button{
     &--show{
       background: none;
