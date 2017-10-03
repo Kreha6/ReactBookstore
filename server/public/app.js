@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "10a46b97513aec10fc54"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "ab10c7dc0d6e5f79329c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -58275,7 +58275,7 @@ var BooksForm = function (_Component) {
               null,
               _react2.default.createElement(
                 _reactBootstrap.FormGroup,
-                { controlId: 'title' },
+                { controlId: 'title', validationState: this.props.validation },
                 _react2.default.createElement(
                   _reactBootstrap.ControlLabel,
                   null,
@@ -58284,11 +58284,13 @@ var BooksForm = function (_Component) {
                 _react2.default.createElement(_reactBootstrap.FormControl, {
                   type: 'text',
                   placeholder: 'Enter title',
-                  ref: 'title' })
+                  ref: 'title'
+                }),
+                _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null)
               ),
               _react2.default.createElement(
                 _reactBootstrap.FormGroup,
-                { controlId: 'description' },
+                { controlId: 'description', validationState: this.props.validation },
                 _react2.default.createElement(
                   _reactBootstrap.ControlLabel,
                   null,
@@ -58297,11 +58299,13 @@ var BooksForm = function (_Component) {
                 _react2.default.createElement(_reactBootstrap.FormControl, {
                   type: 'text',
                   placeholder: 'Enter description',
-                  ref: 'description' })
+                  ref: 'description'
+                }),
+                _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null)
               ),
               _react2.default.createElement(
                 _reactBootstrap.FormGroup,
-                { controlId: 'price' },
+                { controlId: 'price', validationState: this.props.validation },
                 _react2.default.createElement(
                   _reactBootstrap.ControlLabel,
                   null,
@@ -58310,7 +58314,9 @@ var BooksForm = function (_Component) {
                 _react2.default.createElement(_reactBootstrap.FormControl, {
                   type: 'text',
                   placeholder: 'Enter price',
-                  ref: 'price' })
+                  ref: 'price'
+                }),
+                _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null)
               ),
               _react2.default.createElement(
                 _reactBootstrap.Button,
@@ -58378,7 +58384,8 @@ function mapStateToProps(state) {
   return {
     books: state.books.books,
     msg: state.books.msg,
-    style: state.books.style
+    style: state.books.style,
+    validation: state.books.validation
   };
 }
 
@@ -58791,21 +58798,24 @@ function booksReducer() {
         return _extends({}, state, {
           books: [].concat(_toConsumableArray(state.books), [action.payload]),
           msg: 'Saved! Click to continue',
-          style: 'success'
+          style: 'success',
+          validation: 'success'
         });
       }
     case "POST_REJECTED":
       {
         return _extends({}, state, {
           msg: 'Please try again',
-          style: 'danger'
+          style: 'danger',
+          validation: 'error'
         });
       }
     case "RESET_FORM":
       {
         return _extends({}, state, {
           msg: null,
-          style: 'primary'
+          style: 'primary',
+          validation: null
 
         });
       }

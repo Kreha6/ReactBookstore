@@ -19,7 +19,8 @@ export function booksReducer(state = {
           action.payload
         ],
         msg:'Saved! Click to continue',
-        style:'success'
+        style:'success',
+        validation:'success'
       }
     }
     case "POST_REJECTED":
@@ -27,7 +28,8 @@ export function booksReducer(state = {
         return {
         ...state,
         msg:'Please try again',
-        style:'danger'
+        style:'danger',
+        validation:'error'
       }
     }
     case "RESET_FORM":
@@ -35,7 +37,8 @@ export function booksReducer(state = {
         return {
         ...state,
         msg:null,
-        style:'primary'
+        style:'primary',
+        validation:null
 
       }
     }
