@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "ab10c7dc0d6e5f79329c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "54bfef160ae4c0eaf197"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -5177,7 +5177,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".booklist {\n  margin-top: 15px; }\n\n.delete-form {\n  margin-top: 25px; }\n\n.cart__buttons {\n  min-width: 300px; }\n\n.footer {\n  margin: 20px 0; }\n\n.menu__navbar__badge {\n  background-color: #e4aa48; }\n\nmain {\n  margin-top: 70px; }\n", ""]);
+exports.push([module.i, ".booklist {\n  margin-top: 15px; }\n\n.delete-form {\n  margin-top: 25px; }\n\n.cart__buttons {\n  min-width: 300px; }\n\n.footer {\n  margin: 20px 0; }\n\n.menu__navbar__badge {\n  background-color: #e4aa48; }\n\n.book-item__button--show {\n  background: none;\n  border: none;\n  margin: 0;\n  padding: 3;\n  outline: none;\n  outline-offset: 0;\n  color: #00BC8C; }\n  .book-item__button--show:hover {\n    color: #11CD9D; }\n\nmain {\n  margin-top: 70px; }\n", ""]);
 
 // exports
 
@@ -57877,25 +57877,32 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var BookItem = function (_Component) {
   _inherits(BookItem, _Component);
 
-  function BookItem() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
+  function BookItem(props) {
     _classCallCheck(this, BookItem);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    var _this = _possibleConstructorReturn(this, (BookItem.__proto__ || Object.getPrototypeOf(BookItem)).call(this, props));
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BookItem.__proto__ || Object.getPrototypeOf(BookItem)).call.apply(_ref, [this].concat(args))), _this), _this.handleAdd = function () {
-      var _this2;
+    _this.onReadMore = function () {
+      return _this.__onReadMore__REACT_HOT_LOADER__.apply(_this, arguments);
+    };
 
-      return (_this2 = _this).__handleAdd__REACT_HOT_LOADER__.apply(_this2, arguments);
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    _this.handleAdd = function () {
+      return _this.__handleAdd__REACT_HOT_LOADER__.apply(_this, arguments);
+    };
+
+    _this.state = {
+      isClicked: false
+    };
+
+    return _this;
   }
 
   _createClass(BookItem, [{
+    key: '__onReadMore__REACT_HOT_LOADER__',
+    value: function __onReadMore__REACT_HOT_LOADER__() {
+      this.setState({ isClicked: !this.state.isClicked });
+    }
+  }, {
     key: '__handleAdd__REACT_HOT_LOADER__',
     value: function __handleAdd__REACT_HOT_LOADER__() {
       var book = this.props.book;
@@ -57950,7 +57957,12 @@ var BookItem = function (_Component) {
             _react2.default.createElement(
               'p',
               null,
-              book.description
+              book.description.length > 50 && !this.state.isClicked ? book.description.substring(0, 50) : book.description,
+              _react2.default.createElement(
+                'button',
+                { className: 'book-item__button--show', onClick: this.onReadMore },
+                book.description.length > 50 && !this.state.isClicked && book.description != null ? "...read more" : book.description.length > 50 ? "Read less" : ""
+              )
             ),
             _react2.default.createElement(
               'h6',
@@ -57987,7 +57999,7 @@ var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Boo
 exports.default = _default;
 ;
 
-var _temp2 = function () {
+var _temp = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
