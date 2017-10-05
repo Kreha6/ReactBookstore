@@ -4,7 +4,6 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-//const fs = require('fs');
 
 var app = express();
 
@@ -75,7 +74,7 @@ app.delete('/books/:_id',function(req,res){
 
   Books.remove(query, function(err,books){
     if(err){
-      console.log('error while deleting', err);
+      throw err;
     }
     res.json(books);
   })
