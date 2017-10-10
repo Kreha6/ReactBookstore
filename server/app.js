@@ -1,9 +1,16 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-
-var httpProxy = require('http-proxy');
+import express from 'express';
+import path from 'path';
+import logger from 'morgan';
+import httpProxy from 'http-proxy';
+import http from 'http';
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import App from '../client/components/App';
+import template from './template';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import reducers from '../client/reducers';
 
 var app = express();
 
@@ -19,7 +26,19 @@ app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('*', function(req,res){
-  res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+
+  const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
+
+  const appString = renderToString(
+    <Provider store={createStoreWithMiddleware(reducers)}>
+      <App />
+    </Provider>
+  );
+
+  res.send(template({
+    body: appString,
+    title: 'Hello World from the server'
+  }));
 });
 
 app.use(function(req, res, next) {
@@ -37,4 +56,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+app.set('port', 3000);
+
+var server = http.createServer(app);
+server.listen(port);

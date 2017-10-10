@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "bookstore",
   "scripts": {
-    "start": "node server/bin/www | node server/apiServer.js",
+    "start": "node dist/bundle.server.js | node dist/apiServer.js",
+    "ws":"webpack --config webpack.config.server.js",
+    "wc":"webpack",
+    "wb":"webpack | webpack --config webpack.config.server.js",
     "build": "webpack -p --config webpack.prod.config.js",
     "dev": "webpack-dev-server --config webpack.dev.config.js",
     "lint": "./scripts/lint",

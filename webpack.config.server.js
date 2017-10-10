@@ -1,17 +1,9 @@
 const webpack           = require('webpack');
 const path              = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: path.join(__dirname, 'client/index.html'),
-  filename: 'index.html',
-  inject: 'body',
-  favicon: path.join(__dirname, 'client/assets/icons/favicon.ico'),
-});
-
-const ExtractTextPluginConfig = new ExtractTextPlugin('bundle.css');
 const ModuleConcatenationConfig = new webpack.optimize.ModuleConcatenationPlugin();
+const ExtractTextPluginConfig = new ExtractTextPlugin('bundle.css');
 
 module.exports = {
   devServer: {
@@ -20,19 +12,23 @@ module.exports = {
     inline: true,
   },
   entry: [
-    './client/index.js',
+    './server/app.js',
   ],
   output: {
-    filename: 'bundle.client.js',
+    filename: 'bundle.server.js',
     path: path.join(__dirname, './dist'),
     publicPath: './',
+  },
+  node: {
+    net: "empty",
+    fs: "empty"
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [path.join(__dirname, 'client')],
+        include: [path.join(__dirname, 'server'),path.join(__dirname, 'client')],
       },
       {
         test: /\.css$/,
@@ -82,8 +78,7 @@ module.exports = {
     ]
   },
   plugins: [
-    HtmlWebpackPluginConfig,
     ExtractTextPluginConfig,
-    ModuleConcatenationConfig,
+    ModuleConcatenationConfig
   ],
 };

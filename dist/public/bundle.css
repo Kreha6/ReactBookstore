@@ -1,0 +1,31 @@
+.booklist {
+  margin-top: 15px; }
+
+.delete-form {
+  margin-top: 25px; }
+
+.cart__buttons {
+  min-width: 300px; }
+
+.footer {
+  margin: 20px 0; }
+
+.menu__navbar__badge {
+  background-color: #e4aa48; }
+
+.book-item {
+  min-height: 200px;
+  position: relative; }
+  .book-item__button--show {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 3;
+    outline: none;
+    outline-offset: 0;
+    color: #00BC8C; }
+    .book-item__button--show:hover {
+      color: #11CD9D; }
+
+main {
+  margin-top: 70px; }
