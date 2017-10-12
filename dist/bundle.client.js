@@ -27580,7 +27580,7 @@ var renderApp = function renderApp() {
   return _react2.default.createElement(
     _reactRedux.Provider,
     { store: createStoreWithMiddleware(_reducers2.default) },
-    _react2.default.createElement(_App2.default, null)
+    _react2.default.createElement(_App2.default, window.__APP_INITIAL_STATE__)
   );
 };
 
@@ -39564,6 +39564,8 @@ var App = function (_Component) {
   _createClass(App, [{
     key: 'render',
     value: function render() {
+      var isMobile = this.props.isMobile;
+
       return _react2.default.createElement(
         _reactRouterDom.BrowserRouter,
         null,
@@ -39571,6 +39573,12 @@ var App = function (_Component) {
           'div',
           null,
           _react2.default.createElement(_Menu2.default, null),
+          _react2.default.createElement(
+            'h1',
+            null,
+            'hello world ',
+            isMobile ? 'mobile' : 'desktop'
+          ),
           _react2.default.createElement(
             'main',
             null,
@@ -44358,7 +44366,7 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.handleDocumentKeyDown = function (e) {
-    if (_this2.props.keyboard && e.key === 'Escape' && _this2.isTopModal()) {
+    if (_this2.props.keyboard && e.keyCode === 27 && _this2.isTopModal()) {
       if (_this2.props.onEscapeKeyDown) {
         _this2.props.onEscapeKeyDown(e);
       }
@@ -44368,7 +44376,7 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.handleDocumentKeyUp = function (e) {
-    if (_this2.props.keyboard && e.key === 'Escape' && _this2.isTopModal()) {
+    if (_this2.props.keyboard && e.keyCode === 27 && _this2.isTopModal()) {
       if (_this2.props.onEscapeKeyUp) {
         _this2.props.onEscapeKeyUp(e);
       }

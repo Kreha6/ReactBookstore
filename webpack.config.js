@@ -23,9 +23,9 @@ module.exports = {
     './client/index.js',
   ],
   output: {
-    filename: 'bundle.client.js',
-    path: path.join(__dirname, './dist'),
-    publicPath: './',
+    filename: 'bundle.js',
+    path: path.join(__dirname, './server/public'),
+    publicPath: '/',
   },
   module: {
     rules: [

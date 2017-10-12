@@ -5,7 +5,7 @@ import BooksForm from './pages/BooksForm';
 import About from './pages/About';
 import Menu from './Menu';
 import Footer from './Footer';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {Route, Switch, withRouter} from 'react-router-dom';
 import '../scss/app.scss';
 
 import {connect} from 'react-redux';
@@ -21,9 +21,6 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <div>
-          <Menu />
           <main>
             <Switch>
               <Route exact path="/about" component = {About} />
@@ -33,9 +30,6 @@ class App extends Component {
             </Switch>
             <Footer />
           </main>
-        </div>
-      </BrowserRouter>
-
     );
   }
 
@@ -50,4 +44,4 @@ function mapDispatchToProps(dispatch) {
   }, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default withRouter(connect(null, mapDispatchToProps)(App));

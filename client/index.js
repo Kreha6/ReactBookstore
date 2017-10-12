@@ -2,7 +2,8 @@ import React from 'react'
 import { render } from 'react-dom'
 
 import App from './components/App'
-
+import Menu from './components/Menu'
+import {BrowserRouter} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
@@ -12,7 +13,12 @@ const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 
 const renderApp = () => (
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
+    <BrowserRouter>
+      <div>
+        <Menu />
+        <App/>
+      </div>
+    </BrowserRouter>
   </Provider>
 )
 

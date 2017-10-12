@@ -6,22 +6,13 @@ const ModuleConcatenationConfig = new webpack.optimize.ModuleConcatenationPlugin
 const ExtractTextPluginConfig = new ExtractTextPlugin('bundle.css');
 
 module.exports = {
-  devServer: {
-    contentBase: './dist',
-    historyApiFallback: true,
-    inline: true,
-  },
   entry: [
-    './server/app.js',
+    './server/public/clientToString.js',
   ],
   output: {
-    filename: 'bundle.server.js',
-    path: path.join(__dirname, './dist'),
+    filename: 'template.js',
+    path: path.join(__dirname, './server/public'),
     publicPath: './',
-  },
-  node: {
-    net: "empty",
-    fs: "empty"
   },
   module: {
     rules: [

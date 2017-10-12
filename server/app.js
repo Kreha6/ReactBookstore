@@ -1,16 +1,8 @@
-import express from 'express';
-import path from 'path';
-import logger from 'morgan';
-import httpProxy from 'http-proxy';
-import http from 'http';
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import App from '../client/components/App';
-import template from './template';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import reducers from '../client/reducers';
+var express = require('express');
+var path = require('path');
+var logger = require('morgan');
+var httpProxy = require('http-proxy');
+var toHtml = require('./public/template.js');
 
 var app = express();
 
@@ -26,20 +18,11 @@ app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('*', function(req,res){
-
-  const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
-
-  const appString = renderToString(
-    <Provider store={createStoreWithMiddleware(reducers)}>
-      <App />
-    </Provider>
-  );
-
-  res.send(template({
-    body: appString,
-    title: 'Hello World from the server'
-  }));
+  //res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+  const clientString = toHtml(req.url);
+  res.send(clientString);
 });
+
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -56,7 +39,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.set('port', 3000);
-
-var server = http.createServer(app);
-server.listen(port);
+module.exports = app;
