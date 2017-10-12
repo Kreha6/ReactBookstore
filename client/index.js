@@ -10,9 +10,9 @@ import thunkMiddleware from 'redux-thunk';
 import reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
-
+const initialState = window.__INITIAL_STATE__;
 const renderApp = () => (
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={createStoreWithMiddleware(reducers,initialState)}>
     <BrowserRouter>
       <div>
         <Menu />
