@@ -5,9 +5,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: path.join(__dirname, 'client/index.html'),
-  filename: 'index.html',
+  filename: '--index.html',
   inject: 'body',
-  favicon: path.join(__dirname, 'client/assets/icons/favicon.ico'),
+favicon: path.join(__dirname, 'server/public/favicon.ico'),
 });
 
 const ExtractTextPluginConfig = new ExtractTextPlugin('bundle.css');
