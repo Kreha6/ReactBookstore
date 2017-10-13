@@ -7,10 +7,10 @@ const ExtractTextPluginConfig = new ExtractTextPlugin('bundle.css');
 
 module.exports = {
   entry: [
-    './server/public/clientToString.js',
+    './server/requestHandler.js',
   ],
   output: {
-    filename: 'template.js',
+    filename: 'requestHandler.bundle.js',
     path: path.join(__dirname, './server/public'),
     publicPath: './',
   },
