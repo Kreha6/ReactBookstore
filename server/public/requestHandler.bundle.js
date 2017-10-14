@@ -41545,13 +41545,19 @@ var NotFound = function NotFound() {
 };
 
 var routes = _react2.default.createElement(
-  _reactRouterDom.Switch,
+  'div',
   null,
-  _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _BookList2.default }),
-  _react2.default.createElement(_reactRouterDom.Route, { path: '/about', component: _About2.default }),
-  _react2.default.createElement(_reactRouterDom.Route, { path: '/admin', component: _BooksForm2.default }),
-  _react2.default.createElement(_reactRouterDom.Route, { path: '/cart', component: _Cart2.default }),
-  _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
+  _react2.default.createElement(_Menu2.default, null),
+  _react2.default.createElement(
+    _reactRouterDom.Switch,
+    null,
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _BookList2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/about', component: _About2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/admin', component: _BooksForm2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/cart', component: _Cart2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
+  ),
+  _react2.default.createElement(_Footer2.default, null)
 );
 
 exports.default = routes;

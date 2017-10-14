@@ -15,13 +15,17 @@ const NotFound = () => (
   )
 
 const routes = (
-    <Switch>
-      <Route exact path="/" component = {BookList} />
-      <Route path="/about" component = {About} />
-      <Route path="/admin" component = {BooksForm} />
-      <Route path="/cart" component = {Cart} />
-      <Route component={NotFound}/>
-    </Switch>
+    <div>
+      <Menu/>
+      <Switch>
+        <Route exact path="/" component = {BookList} />
+        <Route path="/about" component = {About} />
+        <Route path="/admin" component = {BooksForm} />
+        <Route path="/cart" component = {Cart} />
+        <Route component={NotFound}/>
+      </Switch>
+      <Footer/>
+    </div>
 
 
 )

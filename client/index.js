@@ -7,15 +7,14 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import reducers from './reducers';
+import routes from './components/routes'
 
 const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 const initialState = window.__INITIAL_STATE__;
 const renderApp = () => (
   <Provider store={createStoreWithMiddleware(reducers,initialState)}>
     <BrowserRouter>
-      <div>
-        <App/>
-      </div>
+      {routes}
     </BrowserRouter>
   </Provider>
 )
