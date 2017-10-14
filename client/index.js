@@ -1,8 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
-
+import routes from './components/routes'
 import App from './components/App'
-import Menu from './components/Menu'
 import {BrowserRouter} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -15,8 +14,7 @@ const renderApp = () => (
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
       <div>
-        <Menu />
-        <App/>
+        {routes}
       </div>
     </BrowserRouter>
   </Provider>

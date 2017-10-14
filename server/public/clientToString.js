@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import reducers from '../../client/reducers';
-
+import routes from '../../client/components/routes';
 const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 
 function toHtml(location) {
@@ -15,8 +15,7 @@ function toHtml(location) {
   const appString = renderToString(
     <Provider store={createStoreWithMiddleware(reducers)}>
       <StaticRouter location={location} context={routerContext}>
-        <Menu />
-        <App />
+        {routes}
       </StaticRouter>
     </Provider>
   );
