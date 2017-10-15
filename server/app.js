@@ -2,8 +2,7 @@ var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var httpProxy = require('http-proxy');
-//var toHtml = require('./public/template.js');
-var requestHandler = require('./public/requestHandler.bundle.js');
+var routes = require('./routes/index.js');
 var app = express();
 
 const apiProxy = httpProxy.createProxyServer({
@@ -17,16 +16,10 @@ app.use('/api', function(req,res){
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.get('*', function(req,res){
-//   //res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
-//   const clientString = toHtml(req.url);
-//   res.send(clientString);
-// });
+app.set('views', path.join(__dirname, './', 'views'));
 app.set('view engine', 'ejs');
-app.use(function(req, res, next) {
-  requestHandler(req,res,next);
-  }
-);
+
+app.use('/', routes);
 
 
 app.use(function(req, res, next) {

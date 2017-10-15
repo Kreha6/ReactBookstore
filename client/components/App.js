@@ -2,7 +2,6 @@ import React,{ Component } from 'react';
 import Menu from './Menu';
 import Footer from './Footer';
 import {Route, withRouter} from 'react-router-dom';
-import '../scss/app.scss';
 import routes from './routes';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
