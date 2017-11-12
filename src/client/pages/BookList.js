@@ -23,7 +23,6 @@ class BookList extends Component {
       <Grid>
         <Row bsClass="row booklist">
           {booksList}
-          siema
         </Row>
       </Grid>
     )

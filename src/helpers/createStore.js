@@ -6,7 +6,6 @@ import axios from 'axios';
 
 export default (req) => {
 const axiosInstance = axios.create({
-  baseURL: 'http://react-ssr-api.herokuapp.com',
   headers: {cookie: req.get('cookie') || ''}
 })
   //thanks to this axiosInstance my api server is going to think he received request from user not from server (while ssr)
