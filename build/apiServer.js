@@ -13,7 +13,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/bookstore');
+//mongoose.connect('mongodb://localhost:27017/bookstore');
+mongoose.connect('mongodb://testUser:testpass@ds257245.mlab.com:57245/bookstore');
 
 //session
 mongoose.connection.on('error', console.error.bind('console', 'MongoDB - error'));

@@ -59135,6 +59135,11 @@ var About = function About() {
         'li',
         null,
         'get rid of this react-bootstrap stuff'
+      ),
+      _react2.default.createElement(
+        'li',
+        null,
+        'add user authentification'
       )
     )
   );
