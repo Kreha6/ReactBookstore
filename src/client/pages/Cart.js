@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Modal, Panel, Well, Col, Row, Button, ButtonGroup, Label} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {deleteCartItem,updateItem} from '../actions/cartActions';
+import {deleteCartItem,updateItem, getCart} from '../actions/cartActions';
 
 class Cart extends Component {
   constructor(props){
