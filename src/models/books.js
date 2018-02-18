@@ -1,12 +1,12 @@
 var mongoose = require('mongoose');
 
-var booksSchema = mongoose.Schema({
+var bookSchema = mongoose.Schema({
   title: String,
   description: String,
   images: String,
   price: Number
 });
 
-var Books = mongoose.model('Books', booksSchema);
+var Book = mongoose.model('Books', bookSchema);
 
-module.exports = Books;
+module.exports = Book;

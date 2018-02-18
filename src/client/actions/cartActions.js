@@ -17,6 +17,7 @@ export function getCart(){
 
 export function addToCart(cart){
   return function(dispatch){
+    console.log(cart)
     axios.post("/api/cart", cart)
       .then(function(response){
         dispatch({type:"ADD_TO_CART", payload:response.data})

@@ -48,7 +48,7 @@ app.get('/cart', function(req,res){
 
 
 
-var Books = require('../src/models/books.js');
+var Books = require('../src/models/book.js');
 
 app.post('/books', function(req,res){
   var book = req.body;
