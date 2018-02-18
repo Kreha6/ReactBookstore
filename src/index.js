@@ -6,6 +6,13 @@ import {matchRoutes} from 'react-router-config';
 import Routes from './client/Routes';
 import proxy from 'http-proxy';
 
+const Authentication = require('./controllers/authentication');
+const passportService = require('./services/passport');
+const passport = require('passport');
+
+//if user is auth'd do not create session for him
+const requireAuth = passport.authenticate('jwt', { session: false });
+const requireSignin = passport.authenticate('local', { session: false });
 const app = express();
 
 const apiProxy = proxy.createProxyServer({target: 'http://localhost:3001'});
@@ -50,6 +57,9 @@ app.get('*', (req, res) => {
   })
 
 });
+
+app.post('/signin', requireSignin, Authentication.signin);
+app.post('/signup', Authentication.signup);
 
 app.listen(3000, () => {
   console.log("Listening on port 3000");
